@@ -1,12 +1,12 @@
-## Angular2-TypeScript generator
+## Angular-Project generator
 > Yeoman generator for scaffold out a front-end project with Angular and TypeScript
 
-[![NPM](https://nodei.co/npm/generator-angular2-typescript.png?compact=true)](https://nodei.co/npm/generator-angular2-typescript/)
+[![NPM](https://nodei.co/npm/generator-angular-project.png?compact=true)](https://nodei.co/npm/generator-angular-project/)
 
-[![Build Status](https://travis-ci.org/shibbir/generator-angular2-typescript.svg?branch=master)](https://travis-ci.org/shibbir/generator-angular2-typescript)
-[![CircleCI](https://circleci.com/gh/shibbir/generator-angular2-typescript.svg?style=shield)](https://circleci.com/gh/shibbir/generator-angular2-typescript)
-[![Dependencies Status](https://david-dm.org/shibbir/generator-angular2-typescript/status.svg)](https://david-dm.org/shibbir/generator-angular2-typescript)
-[![Coverage Status](https://coveralls.io/repos/github/shibbir/generator-angular2-typescript/badge.svg?branch=master)](https://coveralls.io/github/shibbir/generator-angular2-typescript?branch=master)
+[![Build Status](https://travis-ci.org/shibbir/generator-angular-project.svg?branch=master)](https://travis-ci.org/shibbir/generator-angular-project)
+[![CircleCI](https://circleci.com/gh/shibbir/generator-angular-project.svg?style=shield)](https://circleci.com/gh/shibbir/generator-angular-project)
+[![Dependencies Status](https://david-dm.org/shibbir/generator-angular-project/status.svg)](https://david-dm.org/shibbir/generator-angular-project)
+[![Coverage Status](https://coveralls.io/repos/github/shibbir/generator-angular-project/badge.svg?branch=master)](https://coveralls.io/github/shibbir/generator-angular-project?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Installation
@@ -14,7 +14,7 @@
 You need to have latest version of [Node.js](https://nodejs.org/en/) installed on your machine before running the followings:
 
 ```bash
-npm install yo generator-angular2-typescript -g
+npm install -g yo generator-angular-project
 ```
 
 Make a new directory, and cd into it:
@@ -22,9 +22,9 @@ Make a new directory, and cd into it:
 mkdir my-new-project && cd $_
 ```
 
-Run `yo angular2-typescript`, optionally passing an app name:
+Run `yo angular-project`, optionally passing an app name:
 ```bash
-yo angular2-typescript [app-name]
+yo angular-project [app-name]
 ```
 
 That'll generate a project including:
@@ -48,4 +48,4 @@ npm run coverage
 ```
 
 ## License
-<a href="https://opensource.org/licenses/MIT">The MIT License</a> Copyright &copy; 2016 Shibbir Ahmed
+<a href="https://opensource.org/licenses/MIT">The MIT License</a> Copyright &copy; 2017 Shibbir Ahmed

@@ -1,10 +1,10 @@
 {
-  "name": "generator-angular2-typescript",
-  "version": "0.10.6",
+  "name": "generator-angular-project",
+  "version": "0.1.0",
   "description": "Scaffold out a front-end project with angular, typescript and much more..",
   "keywords": [
     "yeoman-generator",
-    "angular2",
+    "angular",
     "typescript",
     "systemjs",
     "webpack"
@@ -13,16 +13,13 @@
     "test": "mocha --reporter spec --timeout 3000",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec"
   },
-  "engines": {
-    "node": "6.2.0"
-  },
-  "homepage": "https://github.com/shibbir/generator-angular2-typescript",
-  "bugs": "https://github.com/shibbir/generator-angular2-typescript/issues",
+  "homepage": "https://github.com/shibbir/generator-angular-project",
+  "bugs": "https://github.com/shibbir/generator-angular-project/issues",
   "author": {
     "name": "Shibbir Ahmed",
     "url": "https://github.com/shibbir"
   },
-  "repository": "shibbir/generator-angular2-typescript",
+  "repository": "shibbir/generator-angular-project",
   "main": "app/index.js",
   "license": "MIT",
   "files": [
