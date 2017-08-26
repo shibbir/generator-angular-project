@@ -1,13 +1,20 @@
-var helpers = require('./helpers');
-var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+const helpers = require('./helpers');
+const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 
-var reporter = new HtmlScreenshotReporter({
+const screenshotReporter = new HtmlScreenshotReporter({
     dest: 'target/chrome',
     filename: 'htmlReport.html',
     showQuickLinks: true,
     reportOnlyFailedSpecs: false,
     captureOnlyFailedSpecs: true,
     reportTitle: "E2E Report"
+});
+
+const consoleReporter = new SpecReporter({
+    spec: {
+        displayStacktrace: true
+    }
 });
 
 exports.config = {
@@ -24,7 +31,8 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true,
         isVerbose: false,
-        includeStackTrace: false
+        includeStackTrace: false,
+        print: function() {}
     },
 
     directConnect: true,
@@ -35,19 +43,20 @@ exports.config = {
 
     beforeLaunch: function() {
         return new Promise(function(resolve) {
-            reporter.beforeLaunch(resolve);
+            screenshotReporter.beforeLaunch(resolve);
         });
     },
 
     onPrepare: function() {
         browser.ignoreSynchronization = false;
 
-        jasmine.getEnv().addReporter(reporter);
+        jasmine.getEnv().addReporter(screenshotReporter);
+        jasmine.getEnv().addReporter(consoleReporter);
     },
 
     afterLaunch: function(exitCode) {
         return new Promise(function(resolve) {
-            reporter.afterLaunch(resolve.bind(this, exitCode));
+            screenshotReporter.afterLaunch(resolve.bind(this, exitCode));
         });
     },
 

@@ -1,7 +1,7 @@
 'use strict';
 
-var assert = require('yeoman-assert');
-var generateFullProject = require('./utils').generateFullProject;
+const assert = require('yeoman-assert');
+const generateFullProject = require('./utils').generateFullProject;
 
 describe('app:readme', function() {
     before(function() {

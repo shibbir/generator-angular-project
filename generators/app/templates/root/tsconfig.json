@@ -1,17 +1,22 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "rootDir": "./src",
+    "module": "es2015",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "typeRoots": [ "./node_modules/@types" ],
-    "types": [ "jasmine", "node", "core-js", "protractor"]
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jasmine", "node"]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
   ]
 }

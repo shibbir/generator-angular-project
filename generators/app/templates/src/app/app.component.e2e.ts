@@ -1,27 +1,25 @@
 'use strict';
 
-describe('App', () => {
-    beforeEach(() => {
-        browser.get('/');
-    });
+describe('App', function() {
+    beforeEach(() => browser.get('/'));
 
-    it('should have a title', () => {
+    it('should have a title', function() {
         let subject = browser.getTitle();
-        let result = 'Angular2 + TypeScript';
+        let result = 'Angular + TypeScript';
         expect(subject).toEqual(result);
     });
 
-    it('should have header', () => {
+    it('should have header', function() {
         let subject = element(by.tagName('h1')).isPresent();
         expect(subject).toEqual(true);
     });
 
-    it('should have correct header text', () => {
+    it('should have correct header text', function() {
         let subject = element(by.tagName('h1'));
-        expect(subject.getText()).toBe('My Angular2 + TypeScript App');
+        expect(subject.getText()).toBe('My Angular + TypeScript App');
     });
 
-    it('should have footer', () => {
+    it('should have footer', function() {
         let subject = element(by.tagName('footer')).isPresent();
         expect(subject).toEqual(true);
     });

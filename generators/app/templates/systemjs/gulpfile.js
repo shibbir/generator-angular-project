@@ -28,7 +28,7 @@ var paths = {
     css: [<% if(bootstrap) { %>
         'node_modules/bootstrap/dist/css/bootstrap.css',<% } %><% if(foundation) { %>
         'node_modules/foundation-sites/dist/css/foundation.css',<% } %>
-        'src/css/main.css'
+        'src/styles/main.css'
     ],
     prod: 'dist/prod/',
     dev: 'dist/dev/',

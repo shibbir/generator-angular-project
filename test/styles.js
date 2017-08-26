@@ -1,7 +1,7 @@
 'use strict';
 
-var assert = require('yeoman-assert');
-var generateFullProject = require('./utils').generateFullProject;
+const assert = require('yeoman-assert');
+const generateFullProject = require('./utils').generateFullProject;
 
 describe('css:framework', function() {
     describe('bootstrap with webpack', function() {
@@ -17,8 +17,8 @@ describe('css:framework', function() {
             assert.fileContent('src/vendor.ts', /import 'bootstrap\/dist\/js\/bootstrap';/);
         });
 
-        it('import bootstrap.css in src/app/app.component.ts', function() {
-            assert.fileContent('src/app/app.component.ts', /import 'bootstrap\/dist\/css\/bootstrap.css';/);
+        it('import bootstrap.css in src/app/app.module.ts', function() {
+            assert.fileContent('src/app/app.module.ts', /import 'bootstrap\/dist\/css\/bootstrap.css';/);
         });
 
         it('reference jQuery in package.json', function() {
@@ -63,8 +63,8 @@ describe('css:framework', function() {
             assert.fileContent('src/vendor.ts', /import 'foundation-sites\/dist\/js\/foundation';/);
         });
 
-        it('import foundation.css in src/vendor.ts', function() {
-            assert.fileContent('src/app/app.component.ts', /import 'foundation-sites\/dist\/css\/foundation.css';/);
+        it('import foundation.css in src/app/app.module.ts', function() {
+            assert.fileContent('src/app/app.module.ts', /import 'foundation-sites\/dist\/css\/foundation.css';/);
         });
 
         it('reference jQuery in package.json', function() {

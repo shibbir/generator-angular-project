@@ -1,9 +1,9 @@
 'use strict';
 
-let Generator = require('yeoman-generator');
-let yosay = require('yosay');
-let path = require('path');
-let _ = require('lodash');
+const Generator = require('yeoman-generator');
+const yosay = require('yosay');
+const path = require('path');
+const _ = require('lodash');
 
 module.exports = class extends Generator {
     constructor(args, opts) {
@@ -11,7 +11,7 @@ module.exports = class extends Generator {
     }
 
     initializing() {
-        this.log(yosay('Hello, and welcome to angular2-typescript generator!'));
+        this.log(yosay('Hello, and welcome to angular-typescript generator!'));
         this.argument('appname', { type: String, required: false });
 
         this.sourceRoot(path.join(__dirname, 'templates'));
@@ -143,6 +143,7 @@ module.exports = class extends Generator {
 
         if(this.data.webpack) {
             this.fs.copyTpl(this.templatePath('webpack/karma.conf.js'), this.destinationPath('karma.conf.js'));
+            this.fs.copyTpl(this.templatePath('webpack/config/karma.conf.js'), this.destinationPath('config/karma.conf.js'));
             this.fs.copyTpl(this.templatePath('webpack/config/karma-test-shim.js'), this.destinationPath('config/karma-test-shim.js'));
 
             this.fs.copyTpl(this.templatePath('webpack/webpack.config.js'), this.destinationPath('webpack.config.js'));
@@ -161,20 +162,25 @@ module.exports = class extends Generator {
         }
 
         this.fs.copyTpl(this.templatePath('src/index.html'), this.destinationPath('src/index.html'), this.data);
-        this.fs.copyTpl(this.templatePath('src/css/main.css'), this.destinationPath('src/css/main.css'));
+        this.fs.copyTpl(this.templatePath('src/styles/main.css'), this.destinationPath('src/styles/main.css'));
 
-        this.fs.copyTpl(this.templatePath('src/app/app.component.ts'), this.destinationPath('src/app/app.component.ts'), this.data);
+        this.fs.copyTpl(this.templatePath('src/environments/environment.ts'), this.destinationPath('src/environments/environment.ts'));
+        this.fs.copyTpl(this.templatePath('src/environments/environment.prod.ts'), this.destinationPath('src/environments/environment.prod.ts'));
+
         this.fs.copyTpl(this.templatePath('src/app/app.module.ts'), this.destinationPath('src/app/app.module.ts'), this.data);
-        this.fs.copyTpl(this.templatePath('src/app/app.routing.ts'), this.destinationPath('src/app/app.routing.ts'));
+        this.fs.copyTpl(this.templatePath('src/app/app-routing.module.ts'), this.destinationPath('src/app/app-routing.module.ts'));
+        this.fs.copyTpl(this.templatePath('src/app/app.component.ts'), this.destinationPath('src/app/app.component.ts'), this.data);
         this.fs.copyTpl(this.templatePath('src/app/app.component.html'), this.destinationPath('src/app/app.component.html'));
         this.fs.copyTpl(this.templatePath('src/app/app.component.e2e.ts'), this.destinationPath('src/app/app.component.e2e.ts'));
         this.fs.copyTpl(this.templatePath('src/app/app.component.spec.ts'), this.destinationPath('src/app/app.component.spec.ts'));
 
+        this.fs.copyTpl(this.templatePath('src/app/home/home.module.ts'), this.destinationPath('src/app/home/home.module.ts'), this.data);
         this.fs.copyTpl(this.templatePath('src/app/home/home.component.ts'), this.destinationPath('src/app/home/home.component.ts'), this.data);
         this.fs.copyTpl(this.templatePath('src/app/home/home.component.html'), this.destinationPath('src/app/home/home.component.html'));
         this.fs.copyTpl(this.templatePath('src/app/home/home.component.e2e.ts'), this.destinationPath('src/app/home/home.component.e2e.ts'));
         this.fs.copyTpl(this.templatePath('src/app/home/home.component.spec.ts'), this.destinationPath('src/app/home/home.component.spec.ts'));
 
+        this.fs.copyTpl(this.templatePath('src/app/about/about.module.ts'), this.destinationPath('src/app/about/about.module.ts'), this.data);
         this.fs.copyTpl(this.templatePath('src/app/about/about.component.ts'), this.destinationPath('src/app/about/about.component.ts'), this.data);
         this.fs.copyTpl(this.templatePath('src/app/about/about.component.html'), this.destinationPath('src/app/about/about.component.html'));
         this.fs.copyTpl(this.templatePath('src/app/about/about.component.e2e.ts'), this.destinationPath('src/app/about/about.component.e2e.ts'));

@@ -1,7 +1,7 @@
 'use strict';
 
-var assert = require('yeoman-assert');
-var generateFullProject = require('./utils').generateFullProject;
+const assert = require('yeoman-assert');
+const generateFullProject = require('./utils').generateFullProject;
 
 describe('app:configuration', function() {
     before(function () {
@@ -29,20 +29,25 @@ describe('app:configuration', function() {
     it('generate generic source files', function() {
         assert.file([
             'src/index.html',
-            'src/css/main.css',
+            'src/styles/main.css',
+
+            'src/environments/environment.ts',
+            'src/environments/environment.prod.ts',
 
             'src/app/app.module.ts',
-            'src/app/app.routing.ts',
+            'src/app/app-routing.module.ts',
             'src/app/app.component.ts',
             'src/app/app.component.html',
             'src/app/app.component.e2e.ts',
             'src/app/app.component.spec.ts',
 
+            'src/app/home/home.module.ts',
             'src/app/home/home.component.ts',
             'src/app/home/home.component.html',
             'src/app/home/home.component.e2e.ts',
             'src/app/home/home.component.spec.ts',
 
+            'src/app/about/about.module.ts',
             'src/app/about/about.component.ts',
             'src/app/about/about.component.html',
             'src/app/about/about.component.e2e.ts',
