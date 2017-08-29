@@ -16,7 +16,7 @@
     "build:dev": "gulp build:dev",
     "build": "gulp build:prod",
     "serve:prod": "gulp serve:prod"<% } if (webpack && !gulp) { %>
-    "start": "webpack-dev-server --inline --progress --port 3000",
+    "start": "webpack-dev-server --inline --progress --port 3000 --open",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "test": "karma start"<% } if (webpack && gulp) { %>
     "start": "gulp serve",
