@@ -11,7 +11,7 @@ gulp.task('clean:dist', function(done) {
     rimraf(paths.dist, done);
 });
 
-gulp.task('dev-server', plugins.shell.task('webpack-dev-server --inline --progress --port 3000'));
+gulp.task('dev-server', plugins.shell.task('webpack-dev-server --inline --progress --port 3000 --open'));
 
 gulp.task('build', plugins.shell.task([
     'rimraf dist',
