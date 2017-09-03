@@ -18,7 +18,7 @@ const consoleReporter = new SpecReporter({
 });
 
 exports.config = {
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: 'http://localhost:3030/',
 
     specs: [
         helpers.root('src/**/*.e2e.ts')

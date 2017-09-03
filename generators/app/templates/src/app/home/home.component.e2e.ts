@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Home Page', function() {
     beforeEach(() => browser.get('/'));
 
@@ -8,8 +6,8 @@ describe('Home Page', function() {
         expect(subject).toEqual(true);
     });
 
-    it('should have h3 header with "Home Page" text', function() {
+    it('should have h3 header with "Home Component" text', function() {
         let subject = element(by.tagName('h3'));
-        expect(subject.getText()).toBe('Home Page');
+        expect(subject.getText()).toBe('Home Component');
     });
 });

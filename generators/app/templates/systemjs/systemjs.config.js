@@ -1,10 +1,11 @@
 (function(global) {
-    var paths = {
-        'npm:': './node_modules/'
+    let paths = {
+        'npm:': 'node_modules/'
     };
 
-    var map = {
+    let map = {
         'app': 'app',
+        'environments': 'environments',
         '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
         '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
         '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -16,17 +17,18 @@
         'rxjs': 'npm:rxjs'
     };
 
-    // packages tells the System loader how to load when no filename and/or no extension
-    var packages = {
-        app: { main: 'main.js',  defaultExtension: 'js' },
+    let packages = {
+        app: {
+            defaultExtension: 'js',
+            meta: {
+                './*.js': {
+                    loader: 'systemjs-angular-loader.js'
+                }
+            }
+        },
+        environments: { defaultExtension: 'js' },
         rxjs: { defaultExtension: 'js' }
     };
 
-    var config = {
-        paths: paths,
-        map: map,
-        packages: packages
-    };
-
-    System.config(config);
+    System.config({ paths, map, packages });
 })(this);

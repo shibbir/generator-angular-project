@@ -1,16 +1,14 @@
-var gulp = require('gulp'),
-    rimraf = require('rimraf'),
-    Builder = require('systemjs-builder'),
-    runSequence = require('run-sequence'),
-    htmlMinifier = require('html-minifier'),
-    inlineNg2Template = require('gulp-inline-ng2-template'),
-    plugins = require('gulp-load-plugins')({
-        lazy: true
-    });
+const gulp = require('gulp');
+const rimraf = require('rimraf');
+const Builder = require('systemjs-builder');
+const runSequence = require('run-sequence');
+const htmlMinifier = require('html-minifier');
+const inlineNg2Template = require('gulp-inline-ng2-template');
+const plugins = require('gulp-load-plugins')({ lazy: true });
 
-var tsProject = plugins.typescript.createProject('tsconfig.json');
+const tsProject = plugins.typescript.createProject('tsconfig.json');
 
-var paths = {
+const paths = {
     assets: [
         'src/**/*.html',
         'src/**/*.js',
@@ -21,8 +19,7 @@ var paths = {
         'node_modules/bootstrap/dist/js/bootstrap.js',<% } %><% if(foundation) { %>
         'node_modules/foundation-sites/dist/js/foundation.js',<% } %>
         'node_modules/core-js/client/shim.js',
-        'node_modules/zone.js/dist/zone.js',
-        'node_modules/reflect-metadata/Reflect.js'
+        'node_modules/zone.js/dist/zone.js'
     ],
     systemjsConfig: 'src/systemjs.config.js',
     css: [<% if(bootstrap) { %>
@@ -37,7 +34,7 @@ var paths = {
 
 function minifyTemplate(path, ext, file, cb) {
     try {
-        var minifiedFile = htmlMinifier.minify(file, {
+        let minifiedFile = htmlMinifier.minify(file, {
             collapseWhitespace: true,
             caseSensitive: true,
             removeComments: true,
@@ -51,9 +48,9 @@ function minifyTemplate(path, ext, file, cb) {
 }
 
 gulp.task('inject:index', function () {
-    var target = gulp.src('src/index.html');
+    let target = gulp.src('src/index.html');
 
-    var sources = gulp.src([
+    let sources = gulp.src([
         'dist/prod/vendors.min.js',
         'dist/prod/app.min.js',
         'dist/prod/styles.min.css'
@@ -64,7 +61,7 @@ gulp.task('inject:index', function () {
 });
 
 gulp.task('tsc', function () {
-    return gulp.src(['src/**/*.ts'])
+    return tsProject.src()
         .pipe(plugins.sourcemaps.init())
         .pipe(tsProject())
         .pipe(plugins.sourcemaps.write('/'))
@@ -96,7 +93,7 @@ gulp.task('bundle:vendors', function() {
 });
 
 gulp.task('bundle:app', function() {
-    var builder = new Builder(paths.tmp, paths.systemjsConfig);
+    let builder = new Builder(paths.tmp, paths.systemjsConfig);
 
     return builder.buildStatic('app/main.js', paths.prod + 'app.min.js', { minify: true, sourceMaps: true });
 });
@@ -140,7 +137,7 @@ gulp.task('serve:dev', function(done) {
 gulp.task('connect:prod', function() {
     plugins.connect.server({
         root: paths.prod,
-        port: 3000,
+        port: 3030,
         livereload: true,
         fallback: paths.prod + '/index.html'
     });
@@ -149,7 +146,7 @@ gulp.task('connect:prod', function() {
 gulp.task('connect:dev', function() {
     plugins.connect.server({
         root: [paths.dev, './'],
-        port: 3000,
+        port: 3030,
         livereload: true,
         fallback: paths.dev + '/index.html'
     });

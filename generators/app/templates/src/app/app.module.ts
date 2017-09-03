@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';<% if (webpack) { %>
-
 <% if (bootstrap || foundation) { %>
 <% if (bootstrap) { %>import 'bootstrap/dist/css/bootstrap.css';<% } %><% if (foundation) { %>import 'foundation-sites/dist/css/foundation.css';<% } %><% } %>
 import '../styles/main.css';<% } %>

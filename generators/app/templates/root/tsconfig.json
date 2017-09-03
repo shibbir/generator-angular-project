@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -13,9 +13,11 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["jasmine", "node"]
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
-    "dist",
     "src/**/*.spec.ts",
     "src/**/*.e2e.ts"
   ]

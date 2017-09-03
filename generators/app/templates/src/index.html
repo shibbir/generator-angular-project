@@ -2,9 +2,11 @@
 <html>
 <head>
     <base href="/">
-    <title>Angular + TypeScript</title>
+    <title>Angular Project</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><% if (systemjs) { %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="favicon.ico"><% if (systemjs) { %>
 
     <!-- inject:css --><% if (bootstrap) { %>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"><% } %><% if (foundation) { %>
@@ -21,11 +23,10 @@
     <script src="node_modules/foundation-sites/dist/foundation.js"></script><% } %>
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="systemjs.config.js"></script>
     <script>
-        System.import('app').catch(function(err) { console.error(err); });
+        System.import('main.js').catch(function(err) { console.error(err); });
     </script>
     <!-- endinject --><% } %>
 </body>

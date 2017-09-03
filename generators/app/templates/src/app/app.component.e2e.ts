@@ -1,11 +1,9 @@
-'use strict';
-
 describe('App', function() {
     beforeEach(() => browser.get('/'));
 
     it('should have a title', function() {
         let subject = browser.getTitle();
-        let result = 'Angular + TypeScript';
+        let result = 'Angular Project';
         expect(subject).toEqual(result);
     });
 

@@ -11,7 +11,7 @@ module.exports = class extends Generator {
     }
 
     initializing() {
-        this.log(yosay('Hello, and welcome to angular-typescript generator!'));
+        this.log(yosay('Hello, and welcome to angular-project generator!'));
         this.argument('appname', { type: String, required: false });
 
         this.sourceRoot(path.join(__dirname, 'templates'));
@@ -136,9 +136,9 @@ module.exports = class extends Generator {
 
     writing() {
         if(this.data.systemjs) {
-            this.fs.copyTpl(this.templatePath('systemjs/systemjs.config.js'), this.destinationPath('src/systemjs.config.js'), this.data);
             this.fs.copyTpl(this.templatePath('systemjs/gulpfile.js'), this.destinationPath('gulpfile.js'), this.data);
-            this.fs.copyTpl(this.templatePath('src/main.ts'), this.destinationPath('src/app/main.ts'), this.data);
+            this.fs.copyTpl(this.templatePath('systemjs/systemjs.config.js'), this.destinationPath('src/systemjs.config.js'), this.data);
+            this.fs.copyTpl(this.templatePath('systemjs/systemjs-angular-loader.js'), this.destinationPath('src/systemjs-angular-loader.js'));
         }
 
         if(this.data.webpack) {
@@ -154,7 +154,6 @@ module.exports = class extends Generator {
 
             this.fs.copyTpl(this.templatePath('webpack/polyfills.ts'), this.destinationPath('src/polyfills.ts'));
             this.fs.copyTpl(this.templatePath('webpack/vendor.ts'), this.destinationPath('src/vendor.ts'), this.data);
-            this.fs.copyTpl(this.templatePath('src/main.ts'), this.destinationPath('src/main.ts'), this.data);
 
             if(this.data.gulp) {
                 this.fs.copyTpl(this.templatePath('webpack/gulpfile.js'), this.destinationPath('gulpfile.js'));
@@ -162,7 +161,10 @@ module.exports = class extends Generator {
         }
 
         this.fs.copyTpl(this.templatePath('src/index.html'), this.destinationPath('src/index.html'), this.data);
+        this.fs.copy(this.templatePath('src/favicon.ico'), this.destinationPath('src/favicon.ico'));
         this.fs.copyTpl(this.templatePath('src/styles/main.css'), this.destinationPath('src/styles/main.css'));
+
+        this.fs.copyTpl(this.templatePath('src/main.ts'), this.destinationPath('src/main.ts'));
 
         this.fs.copyTpl(this.templatePath('src/environments/environment.ts'), this.destinationPath('src/environments/environment.ts'));
         this.fs.copyTpl(this.templatePath('src/environments/environment.prod.ts'), this.destinationPath('src/environments/environment.prod.ts'));
