@@ -138,7 +138,6 @@ module.exports = class extends Generator {
         if(this.data.systemjs) {
             this.fs.copyTpl(this.templatePath('systemjs/gulpfile.js'), this.destinationPath('gulpfile.js'), this.data);
             this.fs.copyTpl(this.templatePath('systemjs/systemjs.config.js'), this.destinationPath('src/systemjs.config.js'), this.data);
-            this.fs.copyTpl(this.templatePath('systemjs/systemjs-angular-loader.js'), this.destinationPath('src/systemjs-angular-loader.js'));
         }
 
         if(this.data.webpack) {
@@ -194,7 +193,8 @@ module.exports = class extends Generator {
             skipMessage: this.options['skip-install-message'],
             skipInstall: this.options['skip-install'],
             bower: false,
-            npm: true
+            npm: false,
+            yarn: true
         });
     }
 }

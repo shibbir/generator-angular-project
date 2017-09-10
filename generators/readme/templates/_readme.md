@@ -6,28 +6,28 @@
 ## Installation
 
 ```bash
-$ npm start
+$ yarn start
 ```
 
 ## TypeScript Linting
 ```bash
-$ npm run tslint
+$ yarn tslint
 ```
 
 ## Production Build
 ```bash
-$ npm run build
+$ yarn build
 ```
 
 ## Running Unit Tests
 ```bash
-$ npm test
+$ yarn test
 ```
 
 ## Running End-to-End Tests
 ```bash
 # make sure you have a running app
-$ npm run e2e
+$ yarn e2e
 ```<% if (license) { %>
 
 ## License

@@ -39,13 +39,15 @@ That'll generate a project including:
 - [TSLint](https://palantir.github.io/tslint/) linting for the TypeScript language
 - [License](https://spdx.org/licenses/)
 
-## Running Unit Tests
-```bash
-npm test
+## Contribute
 
-# Generate code coverage report
-npm run coverage
-```
+When submitting an issue, please make sure that Yeoman is up-to-date, and also provide the command or commands that cause the issue.
+
+When submitting a PR, make sure that the commit messages match the [AngularJS conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
+
+When submitting a bugfix, write a test that exposes the bug and fails before applying your fix. Submit the test alongside the fix.
+
+When submitting a new feature, add tests that cover the feature.
 
 ## License
-<a href="https://opensource.org/licenses/MIT">The MIT License</a> Copyright &copy; 2017 Shibbir Ahmed
+<a href="https://opensource.org/licenses/MIT">The MIT License</a>

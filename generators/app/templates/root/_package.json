@@ -61,6 +61,7 @@
     "gulp-typescript": "^3.2.2",
     "gulp-uglify": "^2.0.0",
     "html-minifier": "^3.5.3",
+    "st": "^1.2.0",
     "systemjs": "^0.20.18",
     "systemjs-builder": "^0.16.10",<% } %>
     "tslint": "^5.7.0",

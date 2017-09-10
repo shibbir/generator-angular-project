@@ -1,6 +1,6 @@
 (function(global) {
     let paths = {
-        'npm:': 'node_modules/'
+        'npm:': './node_modules/'
     };
 
     let map = {
@@ -18,14 +18,7 @@
     };
 
     let packages = {
-        app: {
-            defaultExtension: 'js',
-            meta: {
-                './*.js': {
-                    loader: 'systemjs-angular-loader.js'
-                }
-            }
-        },
+        app: { defaultExtension: 'js' },
         environments: { defaultExtension: 'js' },
         rxjs: { defaultExtension: 'js' }
     };

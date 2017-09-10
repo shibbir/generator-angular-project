@@ -5,6 +5,7 @@ const runSequence = require('run-sequence');
 const htmlMinifier = require('html-minifier');
 const inlineNg2Template = require('gulp-inline-ng2-template');
 const plugins = require('gulp-load-plugins')({ lazy: true });
+const st = require('st');
 
 const tsProject = plugins.typescript.createProject('tsconfig.json');
 
@@ -12,7 +13,8 @@ const paths = {
     assets: [
         'src/**/*.html',
         'src/**/*.js',
-        'src/**/*.css'
+        'src/**/*.css',
+        'src/**/*.ico'
     ],
     vendors: [<% if(jquery) { %>
         'node_modules/jquery/dist/jquery.js',<% } %><% if(bootstrap) { %>
@@ -32,20 +34,13 @@ const paths = {
     tmp: 'dist/tmp/'
 };
 
-function minifyTemplate(path, ext, file, cb) {
-    try {
-        let minifiedFile = htmlMinifier.minify(file, {
-            collapseWhitespace: true,
-            caseSensitive: true,
-            removeComments: true,
-            removeRedundantAttributes: true
-        });
-        cb(null, minifiedFile);
-    }
-    catch (err) {
-        cb(err);
-    }
-}
+gulp.task('env:production', function() {
+    process.env.NODE_ENV = 'production';
+});
+
+gulp.task('env:development', function() {
+    process.env.NODE_ENV = 'development';
+});
 
 gulp.task('inject:index', function () {
     let target = gulp.src('src/index.html');
@@ -56,30 +51,38 @@ gulp.task('inject:index', function () {
         'dist/prod/styles.min.css'
     ], { read: false });
 
-    return target.pipe(plugins.inject(sources, { ignorePath: paths.prod, addRootSlash: false }))
-        .pipe(gulp.dest(paths.prod));
+    return target.pipe(plugins.inject(sources, { ignorePath: paths.prod, addRootSlash: false })).pipe(gulp.dest(paths.prod));
 });
 
-gulp.task('tsc', function () {
+gulp.task('tsc', function() {
+    const IsProduction = process.env.NODE_ENV === 'production';
+
     return tsProject.src()
-        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.if(!IsProduction, plugins.sourcemaps.init()))
+        .pipe(inlineNg2Template({ base: 'src', useRelativePaths: true, indent: 0, removeLineBreaks: true, templateProcessor: function(path, ext, file, cb) {
+            try {
+                let minifiedFile = htmlMinifier.minify(file, {
+                    collapseWhitespace: true,
+                    caseSensitive: true,
+                    removeComments: true,
+                    removeRedundantAttributes: true
+                });
+                cb(null, minifiedFile);
+            }
+            catch (err) {
+                cb(err);
+            }
+        }}))
         .pipe(tsProject())
-        .pipe(plugins.sourcemaps.write('/'))
-        .pipe(gulp.dest(paths.dev))
-        .pipe(plugins.connect.reload());
-});
-
-gulp.task('inline-ng2-templates', function () {
-    return gulp.src(['src/**/*.ts'])
-        .pipe(inlineNg2Template({ base: 'src', useRelativePaths: false, indent: 0, removeLineBreaks: true, templateProcessor: minifyTemplate }))
-        .pipe(tsProject())
-        .pipe(gulp.dest(paths.tmp));
+        .pipe(plugins.if(!IsProduction, plugins.sourcemaps.write('/')))
+        .pipe(gulp.dest(IsProduction ? paths.tmp : paths.dev))
+        .pipe(plugins.if(!IsProduction, plugins.connect.reload()));
 });
 
 gulp.task('bundle:css', function() {
     return gulp.src(paths.css)
         .pipe(plugins.concat('styles.min.css'))
-        .pipe(plugins.cleanCss())
+        .pipe(plugins.cleanCss({ level: 2 }))
         .pipe(gulp.dest(paths.prod));
 });
 
@@ -119,36 +122,34 @@ gulp.task('clean:tmp', function(done) {
 });
 
 gulp.task('build:prod', function(done) {
-    runSequence('clean:prod', 'inline-ng2-templates', 'bundle:css', 'bundle:vendors', 'bundle:app', 'inject:index', 'clean:tmp', done);
+    runSequence('env:production', 'clean:prod', 'tsc', 'bundle:css', 'bundle:vendors', 'bundle:app', 'inject:index', 'clean:tmp', done);
 });
 
 gulp.task('serve:prod', function(done) {
-    runSequence('build:prod', ['connect:prod', 'watch'], done);
+    runSequence('build:prod', ['connect', 'watch'], done);
 });
 
 gulp.task('build:dev', function(done) {
-    runSequence('clean:dev', 'tsc', 'copy:assets', done);
+    runSequence('env:development', 'clean:dev', 'tsc', 'copy:assets', done);
 });
 
 gulp.task('serve:dev', function(done) {
-    runSequence('build:dev', ['connect:dev', 'watch'], done);
+    runSequence('build:dev', ['connect', 'watch'], done);
 });
 
-gulp.task('connect:prod', function() {
-    plugins.connect.server({
-        root: paths.prod,
-        port: 3030,
-        livereload: true,
-        fallback: paths.prod + '/index.html'
-    });
-});
+gulp.task('connect', function() {
+    const IsProduction = process.env.NODE_ENV === 'production';
 
-gulp.task('connect:dev', function() {
     plugins.connect.server({
-        root: [paths.dev, './'],
+        root: IsProduction ? paths.prod : paths.dev,
         port: 3030,
         livereload: true,
-        fallback: paths.dev + '/index.html'
+        fallback: (IsProduction ? paths.prod : paths.dev) + '/index.html',
+        middleware: (connect, opt) => {
+            return [
+                st({ path: 'node_modules', url: '/node_modules' })
+            ];
+        }
     });
 });
 
