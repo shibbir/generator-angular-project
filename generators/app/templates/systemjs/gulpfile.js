@@ -98,7 +98,7 @@ gulp.task('bundle:vendors', function() {
 gulp.task('bundle:app', function() {
     let builder = new Builder(paths.tmp, paths.systemjsConfig);
 
-    return builder.buildStatic('app/main.js', paths.prod + 'app.min.js', { minify: true, sourceMaps: true });
+    return builder.buildStatic('main.js', paths.prod + 'app.min.js', { minify: true, sourceMaps: true });
 });
 
 gulp.task('copy:assets', function() {

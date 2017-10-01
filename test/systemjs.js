@@ -15,6 +15,7 @@ describe('app:systemjs', function() {
         assert.fileContent('package.json', /"gulp-connect": "\^5.0.0"/);
         assert.fileContent('package.json', /"gulp-inject": "\^4.2.0"/);
         assert.fileContent('package.json', /"gulp-inline-ng2-template": "\^4.0.0"/);
+        assert.fileContent('package.json', /"gulp-if": "\^2.0.2"/);
         assert.fileContent('package.json', /"gulp-load-plugins": "\^1.5.0"/);
         assert.fileContent('package.json', /"gulp-sourcemaps": "\^2.6.1"/);
         assert.fileContent('package.json', /"gulp-typescript": "\^3.2.2"/);

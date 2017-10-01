@@ -57,6 +57,7 @@
     "gulp-connect": "^5.0.0",
     "gulp-inject": "^4.2.0",
     "gulp-inline-ng2-template": "^4.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-typescript": "^3.2.2",
     "gulp-uglify": "^2.0.0",

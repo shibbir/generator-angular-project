@@ -5,6 +5,8 @@
 
 ## Installation
 
+You need to have latest version of [Yarn](https://yarnpkg.com/en/) installed on your machine before running the followings:
+
 ```bash
 $ yarn start
 ```
